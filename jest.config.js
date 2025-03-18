@@ -14,7 +14,6 @@ export default {
         tsconfig: {
           jsx: 'react-jsx',
           esModuleInterop: true,
-          // Remove noFallthrough which is causing issues
         },
       },
     ],
