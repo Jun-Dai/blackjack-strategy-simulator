@@ -1,4 +1,6 @@
 
+// React is implicitly used in JSX expressions, but we need to add the React jsx pragma
+/** @jsx React.createElement */
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Simulator from '../Simulator';

@@ -46,7 +46,7 @@ describe('BlackjackSimulator', () => {
       simulator.simulateHand();
       const results = simulator.runSimulation(1); // Just to access current results
       
-      expect(results.handsPlayed).toBe(1); // Fix: expect 1 instead of 2, as runSimulation(1) returns just 1 hand
+      expect(results.handsPlayed).toBe(1); // Expect 1 since runSimulation(1) returns result for just 1 hand
     });
   });
 
