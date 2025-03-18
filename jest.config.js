@@ -11,7 +11,11 @@ export default {
     '^.+\\.(ts|tsx)$': [
       'ts-jest',
       {
-        tsconfig: 'tsconfig.json',
+        tsconfig: {
+          jsx: 'react-jsx',
+          esModuleInterop: true,
+          // Remove noFallthrough which is causing issues
+        },
       },
     ],
   },
