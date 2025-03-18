@@ -8,7 +8,7 @@ import StrategyManager from "./StrategyManager";
 import { BlackjackRules, PlayerStrategy, SimulationResult, defaultRules, defaultStrategy } from "@/lib/blackjack";
 import { BlackjackSimulator } from "@/lib/simulator";
 import { toast } from "sonner";
-import { Play, Settings, Loader2, Compare } from "lucide-react";
+import { Play, Settings, Loader2, ArrowLeftRight } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Simulator: React.FC = () => {
@@ -102,7 +102,7 @@ const Simulator: React.FC = () => {
                   disabled={isSimulating}
                   className="flex items-center gap-1"
                 >
-                  <Compare className="h-3.5 w-3.5" />
+                  <ArrowLeftRight className="h-3.5 w-3.5" />
                   Compare Mode
                 </Button>
               </div>
