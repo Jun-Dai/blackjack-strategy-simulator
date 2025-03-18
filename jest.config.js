@@ -15,6 +15,7 @@ export default {
       },
     ],
   },
+  testMatch: ['**/__tests__/**/*.test.(ts|tsx)'],
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
     '!src/main.tsx',

@@ -31,7 +31,8 @@ Object.defineProperty(window, 'localStorage', {
 
 // Mock crypto.randomUUID
 const originalRandomUUID = crypto.randomUUID;
-crypto.randomUUID = jest.fn().mockReturnValue('test-uuid-123');
+const mockRandomUUID = jest.fn().mockReturnValue('test-uuid-123');
+crypto.randomUUID = mockRandomUUID;
 
 describe('Strategy Storage', () => {
   beforeEach(() => {

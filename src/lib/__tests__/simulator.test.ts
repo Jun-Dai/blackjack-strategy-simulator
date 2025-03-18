@@ -4,7 +4,9 @@ import {
   defaultRules, 
   defaultStrategy,
   PlayerStrategy,
-  BlackjackRules
+  BlackjackRules,
+  Suit,
+  Rank
 } from '../blackjack';
 
 describe('BlackjackSimulator', () => {
@@ -97,8 +99,8 @@ describe('BlackjackSimulator', () => {
         return {
           playerHand: {
             cards: [
-              { suit: 'hearts', rank: '10', value: 10, isFaceUp: true },
-              { suit: 'clubs', rank: '6', value: 6, isFaceUp: true }
+              { suit: 'hearts' as Suit, rank: '10' as Rank, value: 10, isFaceUp: true },
+              { suit: 'clubs' as Suit, rank: '6' as Rank, value: 6, isFaceUp: true }
             ],
             value: 16,
             isSoft: false,
@@ -110,8 +112,8 @@ describe('BlackjackSimulator', () => {
           },
           dealerHand: {
             cards: [
-              { suit: 'diamonds', rank: 'K', value: 10, isFaceUp: false },
-              { suit: 'spades', rank: '7', value: 7, isFaceUp: true }
+              { suit: 'diamonds' as Suit, rank: 'K' as Rank, value: 10, isFaceUp: false },
+              { suit: 'spades' as Suit, rank: '7' as Rank, value: 7, isFaceUp: true }
             ],
             value: 0,
             isSoft: false,

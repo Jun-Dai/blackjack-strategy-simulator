@@ -5,7 +5,10 @@ import {
   createDeck, 
   shuffle,
   defaultStrategy,
-  defaultRules
+  defaultRules,
+  Card,
+  Suit,
+  Rank
 } from '../blackjack';
 
 describe('Blackjack Core Functions', () => {
@@ -29,9 +32,9 @@ describe('Blackjack Core Functions', () => {
 
   describe('calculateHandValue', () => {
     it('should calculate correct value for non-Ace cards', () => {
-      const cards = [
-        { suit: 'hearts', rank: '10', value: 10, isFaceUp: true },
-        { suit: 'clubs', rank: '7', value: 7, isFaceUp: true }
+      const cards: Card[] = [
+        { suit: 'hearts' as Suit, rank: '10' as Rank, value: 10, isFaceUp: true },
+        { suit: 'clubs' as Suit, rank: '7' as Rank, value: 7, isFaceUp: true }
       ];
       
       const result = calculateHandValue(cards);
@@ -41,9 +44,9 @@ describe('Blackjack Core Functions', () => {
     });
 
     it('should handle Ace as 11 when it doesn\'t bust (soft hand)', () => {
-      const cards = [
-        { suit: 'hearts', rank: 'A', value: 11, isFaceUp: true },
-        { suit: 'clubs', rank: '7', value: 7, isFaceUp: true }
+      const cards: Card[] = [
+        { suit: 'hearts' as Suit, rank: 'A' as Rank, value: 11, isFaceUp: true },
+        { suit: 'clubs' as Suit, rank: '7' as Rank, value: 7, isFaceUp: true }
       ];
       
       const result = calculateHandValue(cards);
@@ -53,10 +56,10 @@ describe('Blackjack Core Functions', () => {
     });
 
     it('should convert Ace from 11 to 1 to prevent bust', () => {
-      const cards = [
-        { suit: 'hearts', rank: 'A', value: 11, isFaceUp: true },
-        { suit: 'clubs', rank: '7', value: 7, isFaceUp: true },
-        { suit: 'diamonds', rank: 'K', value: 10, isFaceUp: true }
+      const cards: Card[] = [
+        { suit: 'hearts' as Suit, rank: 'A' as Rank, value: 11, isFaceUp: true },
+        { suit: 'clubs' as Suit, rank: '7' as Rank, value: 7, isFaceUp: true },
+        { suit: 'diamonds' as Suit, rank: 'K' as Rank, value: 10, isFaceUp: true }
       ];
       
       const result = calculateHandValue(cards);
@@ -66,10 +69,10 @@ describe('Blackjack Core Functions', () => {
     });
 
     it('should handle multiple aces correctly', () => {
-      const cards = [
-        { suit: 'hearts', rank: 'A', value: 11, isFaceUp: true },
-        { suit: 'clubs', rank: 'A', value: 11, isFaceUp: true },
-        { suit: 'diamonds', rank: '9', value: 9, isFaceUp: true }
+      const cards: Card[] = [
+        { suit: 'hearts' as Suit, rank: 'A' as Rank, value: 11, isFaceUp: true },
+        { suit: 'clubs' as Suit, rank: 'A' as Rank, value: 11, isFaceUp: true },
+        { suit: 'diamonds' as Suit, rank: '9' as Rank, value: 9, isFaceUp: true }
       ];
       
       const result = calculateHandValue(cards);
@@ -98,7 +101,7 @@ describe('Blackjack Core Functions', () => {
       expect(suits.has('spades')).toBe(true);
       
       expect(ranks.size).toBe(13);
-      ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'].forEach(rank => {
+      (['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'] as Rank[]).forEach(rank => {
         expect(ranks.has(rank)).toBe(true);
       });
     });
