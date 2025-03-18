@@ -141,13 +141,14 @@ export class BlackjackSimulator {
     
     while (continuePlaying && !currentHand.isBusted) {
       const decision = this.getStrategyDecision(currentHand, dealerUpCardValue);
+      let handCalc; // Declare handCalc outside the switch to avoid redeclaration
       
       switch (decision) {
         case "hit":
           currentHand.cards.push(this.drawCard());
-          const calc = calculateHandValue(currentHand.cards);
-          currentHand.value = calc.value;
-          currentHand.isSoft = calc.isSoft;
+          handCalc = calculateHandValue(currentHand.cards);
+          currentHand.value = handCalc.value;
+          currentHand.isSoft = handCalc.isSoft;
           currentHand.isBusted = currentHand.value > 21;
           break;
           
@@ -160,17 +161,17 @@ export class BlackjackSimulator {
           if (currentHand.cards.length === 2) {
             currentHand.bet *= 2;
             currentHand.cards.push(this.drawCard());
-            const calc = calculateHandValue(currentHand.cards);
-            currentHand.value = calc.value;
-            currentHand.isSoft = calc.isSoft;
+            handCalc = calculateHandValue(currentHand.cards);
+            currentHand.value = handCalc.value;
+            currentHand.isSoft = handCalc.isSoft;
             currentHand.isBusted = currentHand.value > 21;
             continuePlaying = false;
           } else {
             // If can't double, hit instead
             currentHand.cards.push(this.drawCard());
-            const calc = calculateHandValue(currentHand.cards);
-            currentHand.value = calc.value;
-            currentHand.isSoft = calc.isSoft;
+            handCalc = calculateHandValue(currentHand.cards);
+            currentHand.value = handCalc.value;
+            currentHand.isSoft = handCalc.isSoft;
             currentHand.isBusted = currentHand.value > 21;
           }
           break;
@@ -184,9 +185,9 @@ export class BlackjackSimulator {
           } else {
             // If can't surrender, hit instead
             currentHand.cards.push(this.drawCard());
-            const calc = calculateHandValue(currentHand.cards);
-            currentHand.value = calc.value;
-            currentHand.isSoft = calc.isSoft;
+            handCalc = calculateHandValue(currentHand.cards);
+            currentHand.value = handCalc.value;
+            currentHand.isSoft = handCalc.isSoft;
             currentHand.isBusted = currentHand.value > 21;
           }
           break;
@@ -195,9 +196,9 @@ export class BlackjackSimulator {
           // Splitting not simulated in this simplified version
           // In a real game, this would create a new hand
           currentHand.cards.push(this.drawCard());
-          const calc = calculateHandValue(currentHand.cards);
-          currentHand.value = calc.value;
-          currentHand.isSoft = calc.isSoft;
+          handCalc = calculateHandValue(currentHand.cards);
+          currentHand.value = handCalc.value;
+          currentHand.isSoft = handCalc.isSoft;
           currentHand.isBusted = currentHand.value > 21;
           break;
       }
@@ -211,9 +212,9 @@ export class BlackjackSimulator {
     hand.cards[0].isFaceUp = true;
     
     // Calculate full hand value
-    const calc = calculateHandValue(hand.cards);
-    hand.value = calc.value;
-    hand.isSoft = calc.isSoft;
+    const dealerCalc = calculateHandValue(hand.cards);
+    hand.value = dealerCalc.value;
+    hand.isSoft = dealerCalc.isSoft;
     hand.isBlackjack = hand.value === 21 && hand.cards.length === 2;
     
     // Dealer follows house rules
