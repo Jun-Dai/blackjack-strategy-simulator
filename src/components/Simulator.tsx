@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import BlackjackRulesConfig from "./BlackjackRulesConfig";
 import StrategyEditor from "./StrategyEditor";
 import SimulationResults from "./SimulationResults";
+import StrategyManager from "./StrategyManager";
 import { BlackjackRules, PlayerStrategy, SimulationResult, defaultRules, defaultStrategy } from "@/lib/blackjack";
 import { BlackjackSimulator } from "@/lib/simulator";
 import { toast } from "sonner";
@@ -48,6 +49,11 @@ const Simulator: React.FC = () => {
                 <Play className="h-5 w-5 mr-2 text-primary/80" />
                 <h3 className="text-lg font-medium">Run Simulation</h3>
               </div>
+              
+              <StrategyManager
+                currentStrategy={strategy}
+                onStrategyLoad={setStrategy}
+              />
             </div>
             
             <div className="flex items-center gap-4 mb-4">
